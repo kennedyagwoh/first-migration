@@ -1,0 +1,11 @@
+ pipelines:
+    default:
+      - step:
+          name: Sync GitHub Mirror
+          image: alpine/git:latest
+          clone:
+            enabled: false
+          script:
+            - git clone --mirror https://x-token-auth:"$BITBUCKET_VARIABLE"@bitbucket.org//mirror-sync139/first-migration.git
+            - cd first-migration.git
+            - git push --mirror https://x-token-auth:"$GITHUB_VARIABLE"@github.com/kennedyagwoh/first-migration.git
