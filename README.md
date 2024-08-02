@@ -35,7 +35,6 @@ At the bottom left of the page click Developer Settings, Create a Personal acces
 ![CaptureBit personal Access Token](https://github.com/user-attachments/assets/4692fc7d-30f3-44b6-9337-e4572631e5f4)
 On Bitbucket, Create a Repository variables with the Access Token from Github under Repository Settings > Pipeline > Repository variable. Naming the variable Example "GITHUB_VARIABLE"
 
-Inside the Bitbucket repo, create a bitbucket-pipelines.yml file containing the following:
   pipelines:
     default:
       - step:
