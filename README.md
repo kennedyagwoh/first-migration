@@ -4,8 +4,9 @@ Mirror and synchronizing GitHub & Bitbucket repository
 
 On GitHub, create a new repository (import or from scratch)
       
-      Importing a private repository from Bitbucket to Github Navigate to your Bitbucket repository Example "Mirroring-Repo" Create an access token under Repository settings > Security > Access tokens Create Repository Access Token with selecting all the "READ" Permission Copy the last Access token
-![Bit-Repo Access Token](https://github.com/user-attachments/assets/b7b977d6-fd50-4957-b0e3-75b4991e36c3)
+Importing a private repository from Bitbucket to Github Navigate to your Bitbucket repository Example "Mirroring-Repo" Create an access token under Repository settings > Security > Access tokens Create Repository Access Token with selecting all the "READ" Permission Copy the last Access token
+      
+![Bit-Repo Access Token] (https://github.com/user-attachments/assets/b7b977d6-fd50-4957-b0e3-75b4991e36c3)
 
 Navigate To Github and Import the Repository while keeping the same name "Mirroring-Repo"
 
@@ -35,17 +36,18 @@ At the bottom left of the page click Developer Settings, Create a Personal acces
 ![CaptureBit personal Access Token](https://github.com/user-attachments/assets/4692fc7d-30f3-44b6-9337-e4572631e5f4)
 On Bitbucket, Create a Repository variables with the Access Token from Github under Repository Settings > Pipeline > Repository variable. Naming the variable Example "GITHUB_VARIABLE"
 
-  pipelines:
-    default:
-      - step:
-          name: Sync GitHub Mirror
-          image: alpine/git:latest
-          clone:
-            enabled: false
-          script:
-            - git clone --mirror https://x-token-auth:"$BITBUCKET_VARIABLE"@bitbucket.org/demo-migration12/Mirroring-Repo.git ## @bitbucket.org follow by your Bitbucket repository path
-            - cd Mirroring-Repo.git ## cd followed by your Github repository Name
-            - git push --mirror https://x-token-auth:"$GITHUB_VARIABLE"@github.com/asaphdanchi/Mirroring-Repo.git ## @github.com followed by your Github repository path
+  
+        pipelines:
+          default:
+            - step:
+                name: Sync GitHub Mirror
+                image: alpine/git:latest
+                clone:
+                  enabled: false
+                script:
+                  - git clone --mirror https://x-token-auth:"$BITBUCKET_VARIABLE"@bitbucket.org/demo-migration12/Mirroring-Repo.git ## @bitbucket.org follow by your Bitbucket repository path
+                  - cd Mirroring-Repo.git ## cd followed by your Github repository Name
+                  - git push --mirror https://x-token-auth:"$GITHUB_VARIABLE"@github.com/asaphdanchi/Mirroring-Repo.git ## @github.com followed by your Github repository path
             
 On your code replace the "$BITBUCKET_VARIABLE" and "$GITHUB_VARIABLE" with your corresponding variable names while keeping the $ and the "" sign.
 
